@@ -126,6 +126,14 @@
 	padding-inline: 2rem;
 }
 
+@utility min-h-screen-nh {
+	min-height: calc(100vh - 4rem);
+}
+
+body {
+  @apply bg-gradient-to-br from-blue-100 to-white;
+}
+
 img {
     user-select: none;
     -webkit-user-drag: none;

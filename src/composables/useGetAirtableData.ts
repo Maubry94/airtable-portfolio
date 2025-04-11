@@ -53,6 +53,8 @@ export function useGetAirtableData<
 			});
 	}
 
+	getAirtableData();
+
 	return {
 		isLoading,
 		airtableData,
