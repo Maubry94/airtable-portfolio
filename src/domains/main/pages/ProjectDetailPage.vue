@@ -19,20 +19,22 @@ const {
 </script>
 
 <template>
-  <section class="min-h-screen bg-gradient-to-br from-blue-100 to-white p-8">
+  <section class="min-h-screen bg-gradient-to-br from-blue-100 to-white">
     <div class="max-w-4xl mx-auto">
-      <TheButton
-        as-child
-        variant="outline"
-      >
-        <RouterLink :to="{ name: PROJECTS_PAGE }">
-          ← Retour à la liste des projets
-        </RouterLink>
-      </TheButton>
+      <div class="space-y-4">
+        <TheButton
+          as-child
+          variant="outline"
+        >
+          <RouterLink :to="{ name: PROJECTS_PAGE }">
+            ← Retour à la liste des projets
+          </RouterLink>
+        </TheButton>
 
-      <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 text-center mb-12">
-        Détails du projet
-      </h1>
+        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 text-center mb-12">
+          Détails du projet
+        </h1>
+      </div>
 
       <div
         v-if="isLoading"

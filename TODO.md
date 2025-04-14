@@ -19,7 +19,7 @@
   - [x] Voir la liste des projets **publiés uniquement**
   - [x] Voir les détails d’un projet (étudiants, technos, description, visuels/vidéos…)
   - [ ] Liker un projet
-  - [ ] Rechercher un projet par **mots-clés**
+  - [X] Rechercher un projet par **mots-clés**
 
 ---
 
