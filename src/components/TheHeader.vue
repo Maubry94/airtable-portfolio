@@ -9,7 +9,7 @@ import { TheButton } from "@/components/ui/button";
         href="/"
         class="text-2xl font-bold text-gray-900 tracking-tight"
       >
-        5IW3 Portfolio
+        IW Portfolio
       </a>
 
       <nav class="flex gap-4 items-center">

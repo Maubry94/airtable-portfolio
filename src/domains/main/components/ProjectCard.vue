@@ -23,21 +23,26 @@ const { PROJECT_DETAIL_PAGE } = routerPageName;
       :alt="project.fields.title"
       class="w-full h-48 object-cover"
     >
+
     <CardContent class="p-6 flex flex-col justify-between h-full">
       <div>
         <h2 class="text-xl font-semibold text-gray-900 mb-2">
           {{ project.fields.title }}
         </h2>
+
         <p class="text-sm text-gray-600 mb-4 line-clamp-3">
           {{ project.fields.summary.value }}
         </p>
+
         <p class="text-sm text-gray-500 mb-2">
           <span class="font-semibold">👥 Étudiants :</span> {{ project.fields.studentNames.join(', ') }}
         </p>
+
         <p class="text-sm text-gray-500 mb-4">
           <span class="font-semibold">🔧 Tech :</span> {{ project.fields.technologyNames.join(', ') }}
         </p>
       </div>
+
       <div class="flex items-center justify-between mt-auto">
         <TheButton
           as-child
@@ -50,6 +55,7 @@ const { PROJECT_DETAIL_PAGE } = routerPageName;
             Voir plus
           </RouterLink>
         </TheButton>
+
         <span class="text-sm text-gray-600">
           ❤️ {{ project.fields.nbLikes }}
         </span>
