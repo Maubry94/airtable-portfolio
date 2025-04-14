@@ -16,7 +16,7 @@
 ## 💻 Développement du portfolio
 - [x] Choisir les technos frontend/backend (React, Next.js, Vue, Node, etc.)
 - [ ] Créer une interface publique pour :
-  - [ ] Voir la liste des projets **publiés uniquement**
+  - [x] Voir la liste des projets **publiés uniquement**
   - [x] Voir les détails d’un projet (étudiants, technos, description, visuels/vidéos…)
   - [ ] Liker un projet
   - [ ] Rechercher un projet par **mots-clés**

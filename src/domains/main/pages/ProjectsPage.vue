@@ -6,7 +6,10 @@ import ProjectCard from "@/domains/main/components/ProjectCard.vue";
 const {
 	isLoading,
 	airtableData: projects,
-} = useGetAirtableData("Project", projectSchema.array());
+} = useGetAirtableData("Project", projectSchema.array(), undefined, {
+	field: "status",
+	value: "Published",
+});
 </script>
 
 <template>

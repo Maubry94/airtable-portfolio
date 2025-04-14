@@ -17,12 +17,18 @@ interface ApiResponseSingle {
 
 type Table = "Project" | "Student" | "Technology" | "Like";
 
+interface FilterOptions {
+	field?: string;
+	value?: string | number | boolean;
+}
+
 export function useGetAirtableData<
 	GenericZodType extends ZodType = ZodType,
 >(
 	tableName: Table,
 	zodSchema: GenericZodType,
 	id?: string,
+	filterOptions?: FilterOptions,
 ) {
 	const isLoading = ref(false);
 	const airtableData = ref<z.infer<GenericZodType>>([]);
@@ -57,7 +63,13 @@ export function useGetAirtableData<
 					isLoading.value = false;
 				});
 		} else {
-			api.get<ApiResponseList>(tableName)
+			const params: Record<string, string> = {};
+
+			if (filterOptions?.field && filterOptions?.value !== undefined) {
+				params.filterByFormula = `${filterOptions.field}="${filterOptions.value}"`;
+			}
+
+			api.get<ApiResponseList>(tableName, { params })
 				.then((response) => {
 					const jsonMapped = response.data.records.map(
 						(input) => ({
