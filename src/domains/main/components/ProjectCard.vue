@@ -23,7 +23,7 @@ async function toggleLike() {
 		hasLiked.value = true;
 		nbLikes.value++;
 	} else {
-		await removeLike(props.project.id);
+		await removeLike(props.project.fields.title);
 		hasLiked.value = false;
 		nbLikes.value--;
 	}

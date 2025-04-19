@@ -24,9 +24,9 @@ export function useLikeProject() {
 			});
 	}
 
-	async function removeLike(projectId: string) {
+	async function removeLike(projectTitle: string) {
 		try {
-			const formula = `AND(project, "${projectId}")`;
+			const formula = `AND(project = "${projectTitle}")`;
 
 			const res = await api.get<{ records: Like[] }>("/Like", {
 				params: {
