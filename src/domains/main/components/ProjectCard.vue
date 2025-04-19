@@ -3,20 +3,39 @@ import type { Project } from "@/schemas/project";
 import { routerPageName } from "@/router/routerPageName";
 import { TheCard, CardContent } from "@/components/ui/card";
 import TheButton from "@/components/ui/button/TheButton.vue";
+import { ref } from "vue";
+import { useLikeProject } from "@/composables/useLikeProject";
 
-defineProps<{
+const props = defineProps<{
 	project: Project;
 }>();
 
 const { PROJECT_DETAIL_PAGE } = routerPageName;
+
+const nbLikes = ref(props.project.fields.nbLikes);
+const hasLiked = ref(false);
+
+const { addLike, removeLike } = useLikeProject();
+
+async function toggleLike() {
+	if (!hasLiked.value) {
+		addLike(props.project.id);
+		hasLiked.value = true;
+		nbLikes.value++;
+	} else {
+		await removeLike(props.project.id);
+		hasLiked.value = false;
+		nbLikes.value--;
+	}
+}
 </script>
 
 <template>
   <TheCard
     class="
-            py-0 overflow-hidden rounded-2xl shadow-md bg-white border border-gray-200
-            transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1
-          "
+      py-0 overflow-hidden rounded-2xl shadow-md bg-white border border-gray-200
+      transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1
+    "
   >
     <img
       :src="project.fields.image?.[0]?.url"
@@ -43,7 +62,7 @@ const { PROJECT_DETAIL_PAGE } = routerPageName;
         </p>
       </div>
 
-      <div class="flex items-center justify-between mt-auto">
+      <div class="flex items-center justify-between mt-auto gap-2">
         <TheButton
           as-child
           variant="outline"
@@ -56,9 +75,15 @@ const { PROJECT_DETAIL_PAGE } = routerPageName;
           </RouterLink>
         </TheButton>
 
-        <span class="text-sm text-gray-600">
-          ❤️ {{ project.fields.nbLikes }}
-        </span>
+        <TheButton
+          variant="ghost"
+          size="sm"
+          @click="toggleLike"
+          :class="{ 'bg-blue-500 text-white': hasLiked }"
+        >
+          <span>❤️</span>
+          <span class="ml-1 text-sm">{{ nbLikes }}</span>
+        </TheButton>
       </div>
     </CardContent>
   </TheCard>
