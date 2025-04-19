@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { Project } from "@/schemas/project";
 import { routerPageName } from "@/router/routerPageName";
+import { useLikeProject } from "@/composables/useLikeProject";
 import { TheCard, CardContent } from "@/components/ui/card";
 import TheButton from "@/components/ui/button/TheButton.vue";
-import { ref } from "vue";
-import { useLikeProject } from "@/composables/useLikeProject";
+import { onMounted, ref } from "vue";
 
 const props = defineProps<{
 	project: Project;
@@ -15,7 +15,7 @@ const { PROJECT_DETAIL_PAGE } = routerPageName;
 const nbLikes = ref(props.project.fields.nbLikes);
 const hasLiked = ref(false);
 
-const { addLike, removeLike } = useLikeProject();
+const { addLike, removeLike, hasLikedProject } = useLikeProject();
 
 async function toggleLike() {
 	if (!hasLiked.value) {
@@ -23,11 +23,15 @@ async function toggleLike() {
 		hasLiked.value = true;
 		nbLikes.value++;
 	} else {
-		await removeLike(props.project.fields.title);
+		await removeLike(props.project.fields.title, props.project.id);
 		hasLiked.value = false;
 		nbLikes.value--;
 	}
 }
+
+onMounted(() => {
+	hasLiked.value = hasLikedProject(props.project.id);
+});
 </script>
 
 <template>

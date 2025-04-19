@@ -18,7 +18,7 @@
 - [ ] Créer une interface publique pour :
   - [x] Voir la liste des projets **publiés uniquement**
   - [x] Voir les détails d’un projet (étudiants, technos, description, visuels/vidéos…)
-  - [ ] Liker un projet
+  - [x] Liker un projet
   - [X] Rechercher un projet par **mots-clés**
 
 ---

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useRouteParams } from "@/composables/useRouteParams";
+import { z } from "zod";
 import { routerPageName } from "@/router/routerPageName";
 import { projectSchema } from "@/schemas/project";
 import { useGetAirtableData } from "@/composables/useGetAirtableData";
-import { z } from "zod";
+import { useLikeProject } from "@/composables/useLikeProject";
+import { ref, watch } from "vue";
 import { TheButton } from "@/components/ui/button";
 
 const params = useRouteParams({
@@ -16,6 +18,36 @@ const {
 	isLoading,
 	airtableData: project,
 } = useGetAirtableData("Project", projectSchema, params.value.id);
+
+const DEFAULT_LIKES = 0;
+const nbLikes = ref(DEFAULT_LIKES);
+const hasLiked = ref(false);
+
+const { addLike, removeLike, hasLikedProject } = useLikeProject();
+
+watch(project, (newProject) => {
+	if (newProject?.fields) {
+		nbLikes.value = newProject.fields.nbLikes ?? DEFAULT_LIKES;
+		hasLiked.value = hasLikedProject(newProject.id);
+	}
+});
+
+async function toggleLike() {
+	const currentProject = project.value;
+	if (!currentProject) {
+		return;
+	}
+
+	if (!hasLiked.value) {
+		addLike(currentProject.id);
+		hasLiked.value = true;
+		nbLikes.value++;
+	} else {
+		await removeLike(currentProject.fields.title, currentProject.id);
+		hasLiked.value = false;
+		nbLikes.value--;
+	}
+}
 </script>
 
 <template>
@@ -70,9 +102,15 @@ const {
           </li>
         </ul>
 
-        <span class="text-sm text-gray-600">
-          ❤️ {{ project.fields.nbLikes }} likes
-        </span>
+        <TheButton
+          variant="ghost"
+          size="sm"
+          @click="toggleLike"
+          :class="{ 'bg-blue-500 text-white': hasLiked }"
+        >
+          <span>❤️</span>
+          <span class="ml-1 text-sm">{{ nbLikes }} like{{ nbLikes > 1 ? 's' : '' }}</span>
+        </TheButton>
       </div>
     </div>
   </section>
