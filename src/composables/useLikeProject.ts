@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import api from "@/lib/axios";
 import { type Like } from "@/schemas/like";
+import { toast } from "vue-sonner";
 
 export function useLikeProject() {
 	const isLiked = ref(false);
@@ -56,8 +57,17 @@ export function useLikeProject() {
 			isLiked.value = false;
 		} catch (error: unknown) {
 			if (error instanceof Error) {
+				toast("Erreur", {
+					description: "Une erreur s'est produite lors de la suppression du like.",
+					style: {
+						backgroundColor: "red",
+						color: "white",
+					},
+				});
+
 				throw new Error(`Error while removing like: ${error.message}`);
 			}
+
 			throw error;
 		}
 	}

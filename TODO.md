@@ -27,14 +27,14 @@
 - [ ] Créer une interface accessible uniquement après login (email + mot de passe)
   - [ ] Hasher les mots de passe !
 - [ ] Permettre de :
-  - [ ] Publier / dépublier un projet
+  - [x] Publier / dépublier un projet
   - [ ] Voir la répartition des likes entre les projets
 
 ---
 
 ## 🔗 Intégration Airtable API
-- [ ] Mettre en place les requêtes GET/POST/PATCH vers l’API Airtable
-- [ ] Gérer les états de publication dans la base
+- [x] Mettre en place les requêtes GET/POST/PATCH vers l’API Airtable
+- [x] Gérer les états de publication dans la base
 - [x] Stocker / récupérer les likes de chaque projet
 
 ---

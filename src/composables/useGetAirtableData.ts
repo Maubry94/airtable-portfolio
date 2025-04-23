@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import { type z, type ZodType } from "zod";
 import api from "../lib/axios";
+import { toast } from "vue-sonner";
 
 interface ApiResponseList {
 	records: {
@@ -48,6 +49,14 @@ export function useGetAirtableData<
 					const { success, data, error } = zodSchema.safeParse(jsonMapped);
 
 					if (!success) {
+						toast("Erreur", {
+							description: "Une erreur s'est produite lors de la récupération des données.",
+							style: {
+								backgroundColor: "red",
+								color: "white",
+							},
+						});
+
 						throw new Error(error.errors.shift()!.message);
 					}
 
@@ -57,6 +66,7 @@ export function useGetAirtableData<
 					if (error instanceof Error) {
 						throw new Error(`Error while fetching data: ${error.message}`);
 					}
+
 					throw error;
 				})
 				.finally(() => {
@@ -88,6 +98,14 @@ export function useGetAirtableData<
 					airtableData.value = <never>data;
 				})
 				.catch((error: unknown) => {
+					toast("Erreur", {
+						description: "Une erreur s'est produite lors de la récupération des données.",
+						style: {
+							backgroundColor: "red",
+							color: "white",
+						},
+					});
+
 					if (error instanceof Error) {
 						throw new Error(`Error while fetching data: ${error.message}`);
 					}

@@ -2,6 +2,7 @@ import { type ZodObject, type ZodTypeAny, type infer as zodInfer, z } from "zod"
 import { type Ref, computed } from "vue";
 import { routerPageName } from "@/router/routerPageName";
 import { useRoute, useRouter } from "vue-router";
+import { toast } from "vue-sonner";
 
 export function useRouteParams<
 	T extends Record<string, ZodTypeAny>,
@@ -21,6 +22,14 @@ export function useRouteParams<
 
 		if (!result.success) {
 			void router.push({ name: routerPageName.HOME_PAGE });
+
+			toast("Erreur", {
+				description: "Une erreur s'est produite lors de la récupération des paramètres de la route.",
+				style: {
+					backgroundColor: "red",
+					color: "white",
+				},
+			});
 
 			throw new Error("Params is invalid.");
 		}
