@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import TheFooter from "@/components/TheFooter.vue";
-import TheHeader from "@/components/TheHeader.vue";
+import AdminHeader from "@/components/AdminHeader.vue";
 
 </script>
 <template>
-  <TheHeader />
+  <AdminHeader />
 
   <main class="container h-[calc(100vh-2*2rem)] py-8">
     <RouterView />

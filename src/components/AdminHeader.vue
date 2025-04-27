@@ -2,7 +2,7 @@
 import { routerPageName } from "@/router/routerPageName";
 import { TheButton } from "@/components/ui/button";
 
-const { HOME_PAGE, PROJECTS_PAGE, MANAGE_PROJECTS_PAGE } = routerPageName;
+const { HOME_PAGE } = routerPageName;
 </script>
 
 <template>
@@ -18,23 +18,12 @@ const { HOME_PAGE, PROJECTS_PAGE, MANAGE_PROJECTS_PAGE } = routerPageName;
       <nav class="flex gap-4 items-center">
         <TheButton
           as-child
-          variant="ghost"
-        >
-          <RouterLink
-            :to="{ name: PROJECTS_PAGE }"
-          >
-            Projets
-          </RouterLink>
-        </TheButton>
-
-        <TheButton
-          as-child
           variant="outline"
         >
           <RouterLink
-            :to="{ name: MANAGE_PROJECTS_PAGE }"
+            :to="{ name: HOME_PAGE }"
           >
-            Admin
+            Accueil
           </RouterLink>
         </TheButton>
       </nav>
