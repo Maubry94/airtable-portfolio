@@ -1,6 +1,6 @@
 # portfolio-airtable
 
-This is a portfolio using Airtable database and API.
+Portfolio utilisant la base de données et l'API Airtable.
 
 ## Project Setup
 
@@ -25,3 +25,19 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## Technologies utilisées
+
+### Frontend
+- **Vite**
+- **Vue.js**
+- **TypeScript**
+- **Tailwind CSS**
+
+### UI/UX
+- **shadcn-vue**
+
+### API et intégrations
+- **Axios**
+- **Airtable API**
+- **Zod**
