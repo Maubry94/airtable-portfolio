@@ -3,6 +3,7 @@ import { useRouter } from "vue-router";
 import { toast } from "vue-sonner";
 import { type AdminLoginData } from "@/schemas/adminLogin";
 import api from "@/lib/axios";
+import * as bcrypt from "bcryptjs";
 
 interface AdminUserResponse {
 	records: {
@@ -43,7 +44,9 @@ export function useAuth() {
 
 			const [user] = users;
 
-			if (user.fields.password !== formData.password) {
+			const isPasswordValid = await bcrypt.compare(formData.password, user.fields.password);
+
+			if (!isPasswordValid) {
 				toast("Erreur", {
 					description: "Email ou mot de passe incorrect",
 					style: {
