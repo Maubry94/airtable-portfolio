@@ -41,3 +41,4 @@ npm run lint
 - **Axios**
 - **Airtable API**
 - **Zod**
+- **Bcrypt**

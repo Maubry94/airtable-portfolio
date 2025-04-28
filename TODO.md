@@ -24,8 +24,8 @@
 ---
 
 ## 🔐 Interface d’administration
-- [ ] Créer une interface accessible uniquement après login (email + mot de passe)
-  - [ ] Hasher les mots de passe !
+- [x] Créer une interface accessible uniquement après login (email + mot de passe)
+  - [x] Hasher les mots de passe !
 - [ ] Permettre de :
   - [x] Publier / dépublier un projet
   - [ ] Voir la répartition des likes entre les projets
@@ -42,7 +42,7 @@
 ## 📄 Livrables
 - [x] Créer un dépôt GitHub et y pousser le code
 - [ ] Partager le repo avec **yoanncoualan**
-- [ ] Ajouter un fichier `README.md` contenant :
+- [x] Ajouter un fichier `README.md` contenant :
   - [x] Instructions pour installer et lancer le projet
-  - [ ] Liste des technos utilisées
+  - [x] Liste des technos utilisées
   - [x] Contenu exemple du fichier `.env.local` ou config d’API
