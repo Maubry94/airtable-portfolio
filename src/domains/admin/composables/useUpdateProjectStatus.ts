@@ -23,6 +23,7 @@ export function useUpdateProjectStatus() {
 				if (error instanceof Error) {
 					throw new Error(`Error while updating data: ${error.message}`);
 				}
+
 				throw error;
 			})
 			.finally(() => {

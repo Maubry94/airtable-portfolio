@@ -6,7 +6,7 @@ import TheHeader from "@/components/TheHeader.vue";
 <template>
   <TheHeader />
 
-  <main class="container h-[calc(100vh-2*2rem)] py-8">
+  <main class="container min-h-[calc(100vh-2*2rem)] py-8">
     <RouterView />
   </main>
 

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { routerPageName } from "@/router/routerPageName";
 import { TheButton } from "@/components/ui/button";
+import { useAuth } from "@/domains/admin/composables/useAuth";
 
 const { HOME_PAGE } = routerPageName;
+const { logout, isAuthenticated } = useAuth();
 </script>
 
 <template>
@@ -25,6 +27,14 @@ const { HOME_PAGE } = routerPageName;
           >
             Accueil
           </RouterLink>
+        </TheButton>
+
+        <TheButton
+          v-if="isAuthenticated"
+          variant="ghost"
+          @click="logout"
+        >
+          Déconnexion
         </TheButton>
       </nav>
     </div>

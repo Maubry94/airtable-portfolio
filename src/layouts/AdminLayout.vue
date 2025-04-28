@@ -6,7 +6,7 @@ import AdminHeader from "@/components/AdminHeader.vue";
 <template>
   <AdminHeader />
 
-  <main class="container h-[calc(100vh-2*2rem)] py-8">
+  <main class="container min-h-[calc(100vh-2*2rem)] py-8">
     <RouterView />
   </main>
 

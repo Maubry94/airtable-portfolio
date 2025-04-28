@@ -3,6 +3,10 @@ import api from "@/lib/axios";
 import { type Like } from "@/schemas/like";
 import { toast } from "vue-sonner";
 
+interface ApiResponse {
+	records: Like[];
+}
+
 export function useLikeProject() {
 	const isLiked = ref(false);
 
@@ -40,7 +44,7 @@ export function useLikeProject() {
 
 			const formula = `AND(project = "${projectTitle}")`;
 
-			const res = await api.get<{ records: Like[] }>("/Like", {
+			const res = await api.get<ApiResponse>("/Like", {
 				params: {
 					filterByFormula: formula,
 				},
