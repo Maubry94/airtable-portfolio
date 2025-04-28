@@ -26,9 +26,9 @@
 ## 🔐 Interface d’administration
 - [x] Créer une interface accessible uniquement après login (email + mot de passe)
   - [x] Hasher les mots de passe !
-- [ ] Permettre de :
+- [x] Permettre de :
   - [x] Publier / dépublier un projet
-  - [ ] Voir la répartition des likes entre les projets
+  - [x] Voir la répartition des likes entre les projets
 
 ---
 
