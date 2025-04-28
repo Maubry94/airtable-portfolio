@@ -39,6 +39,7 @@ admin@esgi.fr / Test1234
 
 ### UI/UX
 - **shadcn-vue**
+- **chart.js / vue-chartjs**
 
 ### API et intégrations
 - **Axios**
