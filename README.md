@@ -26,6 +26,9 @@ npm run build
 npm run lint
 ```
 
+## Admin / Password
+admin@esgi.fr / Test1234
+
 ## Technologies utilisées
 
 ### Frontend

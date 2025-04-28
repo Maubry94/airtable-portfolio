@@ -3,7 +3,6 @@ import { toTypedSchema } from "@vee-validate/zod";
 import { useAuth } from "../composables/useAuth";
 import { adminLoginSchema } from "@/schemas/adminLogin";
 import { useForm } from "vee-validate";
-import { ref } from "vue";
 
 import {
 	TheCard,
@@ -22,8 +21,7 @@ import {
 import { TheInput } from "@/components/ui/input";
 import { TheButton } from "@/components/ui/button";
 
-const { login } = useAuth();
-const isSubmitting = ref(false);
+const { login, isSubmitting } = useAuth();
 
 const formSchema = toTypedSchema(adminLoginSchema);
 const form = useForm({
@@ -65,6 +63,7 @@ const onSubmit = form.handleSubmit(async(values) => {
               <FormControl>
                 <TheInput
                   type="email"
+                  autocomplete="username"
                   v-bind="componentField"
                 />
               </FormControl>
@@ -81,6 +80,7 @@ const onSubmit = form.handleSubmit(async(values) => {
               <FormControl>
                 <TheInput
                   type="password"
+                  autocomplete="current-password"
                   v-bind="componentField"
                 />
               </FormControl>

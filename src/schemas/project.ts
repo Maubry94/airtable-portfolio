@@ -26,7 +26,7 @@ const projectMediaItemSchema = z.object({
 const fieldsSchema = z.object({
 	title: z.string(),
 	description: z.string(),
-	status: z.string(),
+	status: z.enum(["Published", "Unpublished"]),
 	image: z.array(projectMediaItemSchema),
 	studentNames: z.array(z.string()),
 	studentCount: z.number(),

@@ -1,8 +1,8 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { toast } from "vue-sonner";
 import { type AdminLoginData } from "@/schemas/adminLogin";
 import api from "@/lib/axios";
+import { toast } from "vue-sonner";
 import * as bcrypt from "bcryptjs";
 
 interface AdminUserResponse {
@@ -19,9 +19,12 @@ const isAuthenticated = ref(!!localStorage.getItem("admin_token"));
 
 export function useAuth() {
 	const router = useRouter();
+	const isSubmitting = ref(false);
 
 	async function login(formData: AdminLoginData) {
 		try {
+			isSubmitting.value = true;
+
 			const response = await api.get<AdminUserResponse>("/Admin", {
 				params: {
 					filterByFormula: `email="${formData.email}"`,
@@ -84,6 +87,8 @@ export function useAuth() {
 			}
 
 			throw error;
+		} finally {
+			isSubmitting.value = false;
 		}
 	}
 
@@ -94,6 +99,7 @@ export function useAuth() {
 	}
 
 	return {
+		isSubmitting,
 		isAuthenticated,
 		login,
 		logout,

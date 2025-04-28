@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import api from "@/lib/axios";
-import { type Like } from "@/schemas/like";
+import { type Like, type LikedProjects, likedProjectsSchema } from "@/schemas/like";
 import { toast } from "vue-sonner";
 
 interface ApiResponse {
@@ -10,15 +10,29 @@ interface ApiResponse {
 export function useLikeProject() {
 	const isLiked = ref(false);
 
+	function getLikedProjects(): LikedProjects {
+		const stored = localStorage.getItem("likedProjects") || "[]";
+
+		try {
+			return likedProjectsSchema.parse(JSON.parse(stored));
+		} catch (error: unknown) {
+			if (error instanceof Error) {
+				throw new Error(`Invalid stored liked projects format: ${error.message}`);
+			}
+
+			throw error;
+		}
+	}
+
 	function hasLikedProject(projectId: string): boolean {
-		const likedProjects = JSON.parse(localStorage.getItem("likedProjects") || "[]") as string[];
+		const likedProjects = getLikedProjects();
 		return likedProjects.includes(projectId);
 	}
 
 	function addLike(projectId: string) {
 		isLiked.value = true;
 
-		const likedProjects = JSON.parse(localStorage.getItem("likedProjects") || "[]") as string[];
+		const likedProjects = getLikedProjects();
 		if (!likedProjects.includes(projectId)) {
 			likedProjects.push(projectId);
 			localStorage.setItem("likedProjects", JSON.stringify(likedProjects));
@@ -38,7 +52,7 @@ export function useLikeProject() {
 
 	async function removeLike(projectTitle: string, projectId: string) {
 		try {
-			const likedProjects = JSON.parse(localStorage.getItem("likedProjects") || "[]") as string[];
+			const likedProjects = getLikedProjects();
 			const updatedProjects = likedProjects.filter((id) => id !== projectId);
 			localStorage.setItem("likedProjects", JSON.stringify(updatedProjects));
 
