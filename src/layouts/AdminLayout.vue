@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import TheFooter from "@/components/TheFooter.vue";
-import AdminHeader from "@/components/AdminHeader.vue";
+import AdminHeader from "@/domains/admin/components/AdminHeader.vue";
 
 </script>
 <template>
