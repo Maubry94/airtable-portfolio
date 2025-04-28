@@ -3,6 +3,25 @@ import api from "@/lib/axios";
 import { type Like, type LikedProjects, likedProjectsSchema } from "@/schemas/like";
 import { toast } from "vue-sonner";
 
+const LIKE_CONFIG = {
+	STORAGE: {
+		LOCAL_STORAGE_KEY: "likedProjects",
+		DEFAULT_VALUE: "[]",
+	},
+	RECORDS: {
+		NO_RECORDS: 0,
+		FIRST_RECORD: 0,
+	},
+	NOTIFICATION: {
+		ERROR_TITLE: "Erreur",
+		DELETE_ERROR_MESSAGE: "Une erreur s'est produite lors de la suppression du like.",
+		ERROR_STYLE: {
+			backgroundColor: "red",
+			color: "white",
+		},
+	},
+};
+
 interface ApiResponse {
 	records: Like[];
 }
@@ -11,7 +30,8 @@ export function useLikeProject() {
 	const isLiked = ref(false);
 
 	function getLikedProjects(): LikedProjects {
-		const stored = localStorage.getItem("likedProjects") || "[]";
+		const { LOCAL_STORAGE_KEY, DEFAULT_VALUE } = LIKE_CONFIG.STORAGE;
+		const stored = localStorage.getItem(LOCAL_STORAGE_KEY) || DEFAULT_VALUE;
 
 		try {
 			return likedProjectsSchema.parse(JSON.parse(stored));
@@ -35,7 +55,8 @@ export function useLikeProject() {
 		const likedProjects = getLikedProjects();
 		if (!likedProjects.includes(projectId)) {
 			likedProjects.push(projectId);
-			localStorage.setItem("likedProjects", JSON.stringify(likedProjects));
+			const { LOCAL_STORAGE_KEY } = LIKE_CONFIG.STORAGE;
+			localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(likedProjects));
 		}
 
 		api.post("/Like", {
@@ -54,7 +75,8 @@ export function useLikeProject() {
 		try {
 			const likedProjects = getLikedProjects();
 			const updatedProjects = likedProjects.filter((id) => id !== projectId);
-			localStorage.setItem("likedProjects", JSON.stringify(updatedProjects));
+			const { LOCAL_STORAGE_KEY } = LIKE_CONFIG.STORAGE;
+			localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedProjects));
 
 			const formula = `AND(project = "${projectTitle}")`;
 
@@ -64,23 +86,20 @@ export function useLikeProject() {
 				},
 			});
 
-			const NO_RECORDS = 0;
+			const { NO_RECORDS, FIRST_RECORD } = LIKE_CONFIG.RECORDS;
 			const records: Like[] = res.data.records || [];
 			if (records.length === NO_RECORDS) {
 				return;
 			}
 
-			const FIRST_RECORD = 0;
 			await api.delete(`/Like/${records[FIRST_RECORD].id}`);
 			isLiked.value = false;
 		} catch (error: unknown) {
 			if (error instanceof Error) {
-				toast("Erreur", {
-					description: "Une erreur s'est produite lors de la suppression du like.",
-					style: {
-						backgroundColor: "red",
-						color: "white",
-					},
+				const { ERROR_TITLE, DELETE_ERROR_MESSAGE, ERROR_STYLE } = LIKE_CONFIG.NOTIFICATION;
+				toast(ERROR_TITLE, {
+					description: DELETE_ERROR_MESSAGE,
+					style: ERROR_STYLE,
 				});
 
 				throw new Error(`Error while removing like: ${error.message}`);

@@ -5,6 +5,37 @@ import api from "@/lib/axios";
 import { toast } from "vue-sonner";
 import * as bcrypt from "bcryptjs";
 
+const AUTH_CONFIG = {
+	STORAGE: {
+		ADMIN_TOKEN_KEY: "admin_token",
+	},
+	USERS: {
+		NO_USERS: 0,
+		ARRAY_FIRST: 0,
+	},
+	NOTIFICATION: {
+		TITLES: {
+			ERROR: "Erreur",
+			SUCCESS: "Succès",
+		},
+		MESSAGES: {
+			INVALID_CREDENTIALS: "Email ou mot de passe incorrect",
+			LOGIN_ERROR: "Une erreur est survenue lors de la connexion",
+			LOGIN_SUCCESS: "Connexion réussie",
+		},
+		STYLES: {
+			ERROR: {
+				backgroundColor: "red",
+				color: "white",
+			},
+			SUCCESS: {
+				backgroundColor: "green",
+				color: "white",
+			},
+		},
+	},
+};
+
 interface AdminUserResponse {
 	records: {
 		id: string;
@@ -15,7 +46,7 @@ interface AdminUserResponse {
 	}[];
 }
 
-const isAuthenticated = ref(!!localStorage.getItem("admin_token"));
+const isAuthenticated = ref(!!localStorage.getItem(AUTH_CONFIG.STORAGE.ADMIN_TOKEN_KEY));
 
 export function useAuth() {
 	const router = useRouter();
@@ -33,14 +64,11 @@ export function useAuth() {
 
 			const users = response.data.records;
 
-			const NO_USER = 0;
-			if (users.length === NO_USER) {
-				toast("Erreur", {
-					description: "Email ou mot de passe incorrect",
-					style: {
-						backgroundColor: "red",
-						color: "white",
-					},
+			if (users.length === AUTH_CONFIG.USERS.NO_USERS) {
+				const { TITLES, MESSAGES, STYLES } = AUTH_CONFIG.NOTIFICATION;
+				toast(TITLES.ERROR, {
+					description: MESSAGES.INVALID_CREDENTIALS,
+					style: STYLES.ERROR,
 				});
 				return false;
 			}
@@ -50,36 +78,31 @@ export function useAuth() {
 			const isPasswordValid = await bcrypt.compare(formData.password, user.fields.password);
 
 			if (!isPasswordValid) {
-				toast("Erreur", {
-					description: "Email ou mot de passe incorrect",
-					style: {
-						backgroundColor: "red",
-						color: "white",
-					},
+				const { TITLES, MESSAGES, STYLES } = AUTH_CONFIG.NOTIFICATION;
+				toast(TITLES.ERROR, {
+					description: MESSAGES.INVALID_CREDENTIALS,
+					style: STYLES.ERROR,
 				});
 				return false;
 			}
 
 			isAuthenticated.value = true;
-			localStorage.setItem("admin_token", user.id);
-			toast("Succès", {
-				description: "Connexion réussie",
-				style: {
-					backgroundColor: "green",
-					color: "white",
-				},
+			localStorage.setItem(AUTH_CONFIG.STORAGE.ADMIN_TOKEN_KEY, user.id);
+
+			const { TITLES, MESSAGES, STYLES } = AUTH_CONFIG.NOTIFICATION;
+			toast(TITLES.SUCCESS, {
+				description: MESSAGES.LOGIN_SUCCESS,
+				style: STYLES.SUCCESS,
 			});
 
 			await router.push({ name: "manage-projects" });
 
 			return true;
 		} catch (error: unknown) {
-			toast("Erreur", {
-				description: "Une erreur est survenue lors de la connexion",
-				style: {
-					backgroundColor: "red",
-					color: "white",
-				},
+			const { TITLES, MESSAGES, STYLES } = AUTH_CONFIG.NOTIFICATION;
+			toast(TITLES.ERROR, {
+				description: MESSAGES.LOGIN_ERROR,
+				style: STYLES.ERROR,
 			});
 
 			if (error instanceof Error) {
@@ -94,7 +117,7 @@ export function useAuth() {
 
 	async function logout() {
 		isAuthenticated.value = false;
-		localStorage.removeItem("admin_token");
+		localStorage.removeItem(AUTH_CONFIG.STORAGE.ADMIN_TOKEN_KEY);
 		await router.push({ name: "login" });
 	}
 
