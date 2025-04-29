@@ -75,6 +75,5 @@ const loggedItems = [
         </SidebarMenu>
       </SidebarGroup>
     </SidebarContent>
-    <SidebarRail />
   </TheSidebar>
 </template>
