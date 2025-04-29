@@ -11,7 +11,6 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 	type SidebarProps,
-	SidebarRail,
 } from "@/components/ui/sidebar";
 
 const props = defineProps<SidebarProps>();
@@ -44,18 +43,25 @@ const loggedItems = [
   <TheSidebar v-bind="props">
     <SidebarHeader>
       <SidebarMenu>
-        <RouterLink
-          class="flex items-center p-2"
-          :to="{ name: MANAGE_PROJECTS_PAGE }"
-        >
-          <img
-            src="/images/logo.webp"
-            alt="Logo"
-            class="size-8"
+        <SidebarMenuItem>
+          <SidebarMenuButton
+            size="lg"
+            as-child
           >
+            <RouterLink
+              class="flex items-center p-2"
+              :to="{ name: MANAGE_PROJECTS_PAGE }"
+            >
+              <img
+                src="/images/logo.webp"
+                alt="Logo"
+                class="size-8"
+              >
 
-          <span class="text-2xl font-bold text-gray-900 tracking-tight">IW Portfolio</span>
-        </RouterLink>
+              <span class="text-2xl font-bold text-gray-900 tracking-tight">IW Portfolio</span>
+            </RouterLink>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
       </SidebarMenu>
     </SidebarHeader>
     <SidebarContent>
