@@ -48,7 +48,7 @@ const likeStats = computed(() => {
 
 <template>
   <section class="min-h-screen-nh">
-    <h1 class="text-4xl font-extrabold text-center text-gray-900 mb-10">
+    <h1 class="text-2xl font-bold mb-4">
       Répartitions des likes
     </h1>
 

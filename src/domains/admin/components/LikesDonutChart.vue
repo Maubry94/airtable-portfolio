@@ -115,7 +115,7 @@ const chartOptions = {
 </script>
 
 <template>
-  <div class="chart-container max-w-xl mx-auto p-4 bg-white rounded-lg shadow-md">
+  <div class="chart-container max-w-xl mx-auto p-4 bg-white rounded-lg drop-shadow-md">
     <Doughnut
       :data="chartData"
       :options="chartOptions"

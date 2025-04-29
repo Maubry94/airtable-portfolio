@@ -47,7 +47,7 @@ const likesData = computed(() => {
 </script>
 
 <template>
-  <div class="bg-white rounded-lg shadow p-6 mt-8">
+  <div class="bg-white rounded-lg drop-shadow-md p-6 mt-8">
     <h3 class="text-xl font-semibold mb-4">
       Détails par projet
     </h3>
