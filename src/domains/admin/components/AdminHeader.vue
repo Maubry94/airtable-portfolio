@@ -9,8 +9,8 @@ const { logout, isAuthenticated } = useAuth();
 </script>
 
 <template>
-  <header class="sticky top-0 z-5 bg-white backdrop-blur border-b border-gray-200 shadow-sm">
-    <div class="container h-16 flex gap-4 justify-between items-center">
+  <header class="sticky top-0 z-5 h-16 bg-white backdrop-blur border-b border-gray-200 shadow-sm">
+    <div class="mx-8 h-full flex gap-4 justify-between items-center">
       <SidebarTrigger />
 
       <div class="space-x-2">

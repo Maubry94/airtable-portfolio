@@ -51,7 +51,7 @@ async function toggleLike() {
 </script>
 
 <template>
-  <section class="min-h-screen bg-gradient-to-br from-blue-100 to-white">
+  <section class="min-h-screen-nh bg-gradient-to-br from-blue-100 to-white">
     <div class="max-w-4xl mx-auto">
       <div class="space-y-4">
         <TheButton

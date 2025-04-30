@@ -14,7 +14,7 @@ import {
     <SidebarInset>
       <AdminHeader />
 
-      <main class="container min-h-[calc(100vh-2*2rem)] py-8">
+      <main class="container min-h-screen-nh py-8">
         <RouterView />
       </main>
 

@@ -39,7 +39,7 @@ const onSubmit = form.handleSubmit(async(values) => {
 </script>
 
 <template>
-  <section class="h-[calc(100vh-2*2rem)] flex justify-center items-center">
+  <section class="min-h-screen-nh flex justify-center items-center">
     <TheCard class="w-full mx-auto max-w-xs">
       <CardHeader>
         <CardTitle class="text-2xl">

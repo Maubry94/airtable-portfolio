@@ -6,7 +6,7 @@ const { HOME_PAGE } = routerPageName;
 </script>
 
 <template>
-  <section class="min-h-screen-nh flex flex-col items-center justify-center">
+  <section class="h-screen-nh flex flex-col items-center justify-center">
     <div class="text-center max-w-xl">
       <h1 class="text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
         Oups, page introuvable.

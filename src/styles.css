@@ -127,8 +127,11 @@
 	padding-inline: 2rem;
 }
 
+@utility h-screen-nh {
+	height: calc(100vh - 4rem - 2*2rem);
+}
 @utility min-h-screen-nh {
-	min-height: calc(100vh - 4rem);
+	min-height: calc(100vh - 4rem - 2*2rem);
 }
 
 body {
