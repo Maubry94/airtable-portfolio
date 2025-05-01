@@ -9,7 +9,7 @@
 - [x] Créer une base Airtable pour stocker les projets étudiants
 - [x] Structurer la base avec les bons champs (titre, description, technos, étudiants, visuels, vidéos, likes, statut de publication…)
 - [x] Générer l’API key et l’ID de la base
-- [ ] Partager l'accès à yoann.coualan@gmail.com si besoin
+- [x] Partager l'accès à yoann.coualan@gmail.com si besoin
 
 ---
 
@@ -41,7 +41,7 @@
 
 ## 📄 Livrables
 - [x] Créer un dépôt GitHub et y pousser le code
-- [ ] Partager le repo avec **yoanncoualan**
+- [x] Partager le repo avec **yoanncoualan**
 - [x] Ajouter un fichier `README.md` contenant :
   - [x] Instructions pour installer et lancer le projet
   - [x] Liste des technos utilisées
