@@ -94,9 +94,11 @@ async function toggleLike() {
           <li>
             👥 <strong>Étudiants :</strong> {{ project.fields.studentNames.join(', ') }}
           </li>
+
           <li>
             🧪 <strong>Technologies :</strong> {{ project.fields.technologyNames.join(', ') }}
           </li>
+
           <li>
             🔍 <strong>Mots-clés :</strong> {{ project.fields.keywords.value }}
           </li>
@@ -109,6 +111,7 @@ async function toggleLike() {
           :class="{ 'bg-blue-500 text-white': hasLiked }"
         >
           <span>❤️</span>
+
           <span class="ml-1 text-sm">{{ nbLikes }} like{{ nbLikes > 1 ? 's' : '' }}</span>
         </TheButton>
       </div>

@@ -24,6 +24,7 @@ const { logout, isAuthenticated } = useAuth();
             Accueil
           </RouterLink>
         </TheButton>
+
         <TheButton
           v-if="isAuthenticated"
           variant="ghost"

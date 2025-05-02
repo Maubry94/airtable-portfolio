@@ -39,15 +39,19 @@ function toggleStatus() {
         <MoreHorizontal class="w-4 h-4" />
       </TheButton>
     </DropdownMenuTrigger>
+
     <DropdownMenuContent align="end">
       <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
       <DropdownMenuItem
         class="cursor-pointer"
         @click="copy(project.id)"
       >
         Copier l'ID
       </DropdownMenuItem>
+
       <DropdownMenuSeparator />
+
       <DropdownMenuItem>
         <RouterLink
           :to="{ name: PROJECT_DETAIL_PAGE, params: { id: project.id } }"
@@ -57,6 +61,7 @@ function toggleStatus() {
           Voir le projet
         </RouterLink>
       </DropdownMenuItem>
+
       <DropdownMenuItem
         class="cursor-pointer"
         @click="toggleStatus"

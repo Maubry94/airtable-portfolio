@@ -109,6 +109,7 @@ export function useGetAirtableData<
 					if (error instanceof Error) {
 						throw new Error(`Error while fetching data: ${error.message}`);
 					}
+
 					throw error;
 				})
 				.finally(() => {

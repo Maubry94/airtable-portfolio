@@ -51,6 +51,7 @@ const likesData = computed(() => {
     <h3 class="text-xl font-semibold mb-4">
       Détails par projet
     </h3>
+
     <div class="overflow-x-auto">
       <table class="min-w-full divide-y divide-gray-200">
         <thead>
@@ -58,14 +59,17 @@ const likesData = computed(() => {
             <th class="px-4 py-3 text-left text-sm font-medium text-gray-500 tracking-wider">
               Projet
             </th>
+
             <th class="px-4 py-3 text-right text-sm font-medium text-gray-500 tracking-wider">
               Nombre de likes
             </th>
+
             <th class="px-4 py-3 text-right text-sm font-medium text-gray-500 tracking-wider">
               Pourcentage
             </th>
           </tr>
         </thead>
+
         <tbody class="divide-y divide-gray-200">
           <tr
             v-for="item in likesData"
@@ -75,9 +79,11 @@ const likesData = computed(() => {
             <td class="px-4 py-3 text-sm text-gray-900">
               {{ item.title }}
             </td>
+
             <td class="px-4 py-3 text-sm text-gray-900 text-right">
               {{ item.count }}
             </td>
+
             <td class="px-4 py-3 text-sm text-gray-900 text-right">
               {{ item.percentage }}%
             </td>

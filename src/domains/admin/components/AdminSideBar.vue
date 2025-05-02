@@ -64,6 +64,7 @@ const loggedItems = [
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarHeader>
+
     <SidebarContent>
       <SidebarGroup>
         <SidebarMenu>

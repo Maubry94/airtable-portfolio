@@ -86,6 +86,7 @@ onMounted(() => {
           :class="{ 'bg-blue-500 text-white': hasLiked }"
         >
           <span>❤️</span>
+
           <span class="ml-1 text-sm">{{ nbLikes }}</span>
         </TheButton>
       </div>

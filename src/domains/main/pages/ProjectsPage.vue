@@ -96,6 +96,7 @@ const filteredProjects = computed(() => {
           :project="project"
         />
       </div>
+
       <div
         v-else
         class="text-center py-12 text-gray-500"
@@ -106,6 +107,7 @@ const filteredProjects = computed(() => {
         >
           Aucun projet ne correspond à votre recherche "{{ searchQuery }}"
         </p>
+
         <p
           v-else
           class="text-lg"

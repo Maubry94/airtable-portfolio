@@ -11,6 +11,7 @@ import {
 <template>
   <SidebarProvider :style="{ '--sidebar-width': '14rem' }">
     <AdminSideBar />
+
     <SidebarInset>
       <AdminHeader />
 

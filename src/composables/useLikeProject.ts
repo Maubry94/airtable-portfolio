@@ -46,6 +46,7 @@ export function useLikeProject() {
 
 	function hasLikedProject(projectId: string): boolean {
 		const likedProjects = getLikedProjects();
+
 		return likedProjects.includes(projectId);
 	}
 
@@ -55,6 +56,7 @@ export function useLikeProject() {
 		const likedProjects = getLikedProjects();
 		if (!likedProjects.includes(projectId)) {
 			likedProjects.push(projectId);
+
 			const { LOCAL_STORAGE_KEY } = LIKE_CONFIG.STORAGE;
 			localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(likedProjects));
 		}
@@ -67,6 +69,7 @@ export function useLikeProject() {
 			if (error instanceof Error) {
 				throw new Error(`Error while fetching data: ${error.message}`);
 			}
+
 			throw error;
 		});
 	}
@@ -76,10 +79,10 @@ export function useLikeProject() {
 			const likedProjects = getLikedProjects();
 			const updatedProjects = likedProjects.filter((id) => id !== projectId);
 			const { LOCAL_STORAGE_KEY } = LIKE_CONFIG.STORAGE;
+
 			localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedProjects));
 
 			const formula = `AND(project = "${projectTitle}")`;
-
 			const res = await api.get<ApiResponse>("/Like", {
 				params: {
 					filterByFormula: formula,
@@ -88,6 +91,7 @@ export function useLikeProject() {
 
 			const { NO_RECORDS, FIRST_RECORD } = LIKE_CONFIG.RECORDS;
 			const records: Like[] = res.data.records || [];
+
 			if (records.length === NO_RECORDS) {
 				return;
 			}

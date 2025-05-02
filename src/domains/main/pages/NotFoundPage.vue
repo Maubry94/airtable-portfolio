@@ -11,9 +11,11 @@ const { HOME_PAGE } = routerPageName;
       <h1 class="text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
         Oups, page introuvable.
       </h1>
+
       <p class="text-lg text-gray-600 mb-6">
         Il semble que la page que vous cherchez n’existe pas (ou plus). Peut-être êtes-vous perdu ?
       </p>
+
       <TheButton
         as-child
         size="lg"
